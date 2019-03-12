@@ -23,7 +23,7 @@ class App
   end
 
   def return_time(formatter)
-    response(200, formatter.format_time)
+    response(200, formatter.format_time + "\n")
   end
 
   def wrong_path

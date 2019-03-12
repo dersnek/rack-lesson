@@ -22,14 +22,12 @@ class TimeFormatter
 
   def format_time
     directive = requested_format.map { |f| SUPPORTED_DIRECTIVES[f.to_sym] }
-    Time.now.strftime(directive.join('-')) + "\n"
+    Time.now.strftime(directive.join('-'))
   end
 
   private
 
   def validate!
-    requested_format.each do |format|
-      @invalid_args << format unless SUPPORTED_DIRECTIVES.key?(format.to_sym)
-    end
+    @invalid_args = requested_format.reject { |f| SUPPORTED_DIRECTIVES.key?(f.to_sym) }
   end
 end
